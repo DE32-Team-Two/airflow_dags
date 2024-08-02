@@ -25,7 +25,7 @@ with DAG(
         max_active_runs=1,
         max_active_tasks=3,
         description='movie',
-        schedule="25 * * * *",
+        schedule="0 0 * * *",
         start_date=datetime(2024, 7, 24),
         catchup=True,
         tags=['api', 'movie', 'amt'],
