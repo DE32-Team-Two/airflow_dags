@@ -26,7 +26,7 @@ with DAG(
         max_active_tasks=3,
         description='movie',
         schedule="0 0 * * *",
-        start_date=datetime(2024, 7, 24),
+        start_date=datetime(2022, 01, 01),
         catchup=True,
         tags=['api', 'movie', 'amt'],
 ) as dag:
@@ -37,9 +37,13 @@ with DAG(
         bash_command="echo 'start'"
     )
 
-    def get_one_echo():
-        from extract.api.one_to_four import ice_b
-        print(ice_b())
+    def get_one_echo(ds_nodash):
+        import sys
+        from extract.api.one_to_four import ice_b, save2df
+        if int(ds_nodash[4:6]) < 5:
+            save2df(ds_nodash)
+        else:
+            sys.exit(1)
 
     def get_five_echo():
         from extract.api.five_to_eight import ice_breaking
@@ -51,9 +55,10 @@ with DAG(
 
     one_to_four = PythonVirtualenvOperator(
         task_id="one_to_four",
-        python_callable=get_one_echo,
-        requirements=["git+https://github.com/DE32-Team-Two/Extract.git@d1.0.0/20240802hotfix"],
+        python_callable=get_one_echo
+        requirements=["git+https://github.com/DE32-Team-Two/Extract.git@d2.0.0/parquet"],
         system_site_packages=False,
+        
     )
     
     five_to_eight = PythonVirtualenvOperator(
