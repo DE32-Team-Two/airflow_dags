@@ -26,7 +26,7 @@ with DAG(
         max_active_tasks=3,
         description='movie',
         schedule="0 0 * * *",
-        start_date=datetime(2022, 01, 01),
+        start_date=datetime(2022, 1, 1),
         catchup=True,
         tags=['api', 'movie', 'amt'],
 ) as dag:
@@ -55,7 +55,7 @@ with DAG(
 
     one_to_four = PythonVirtualenvOperator(
         task_id="one_to_four",
-        python_callable=get_one_echo
+        python_callable=get_one_echo,
         requirements=["git+https://github.com/DE32-Team-Two/Extract.git@d2.0.0/parquet"],
         system_site_packages=False,
         
