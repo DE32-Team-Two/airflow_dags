@@ -48,14 +48,14 @@ with DAG(
     def get_five_echo(ds_nodash):
         from extract.api.five_to_eight import ice_breaking, save2df
         if 4 < int(ds_nodash[4:6]) < 9:
-            sav2df(ds_nodash)
+            save2df(ds_nodash)
         else:
             sys.exit(1)
 
     def get_eight_echo(ds_nodash):
         from extract.api.nine_to_twelve import ice_breaking, save2df
         if 8 < int(ds_nodash[6:]):
-            sav2df(ds_nodash)
+            save2df(ds_nodash)
         else:
             sys.exit(1)
 
