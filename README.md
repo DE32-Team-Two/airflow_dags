@@ -1,11 +1,8 @@
-<<<<<<< HEAD
 
 ### 팀 이름 `t2`
+
 #### 팀원 `정미은` `이정훈` `김태영`
-=======
-AIRFOW 
->>>>>>> d03b7575f3472847734dd4231da085b27129994e
-***
+
 #### 프로젝트 주제
 영화박스오피스 데이터 수집(Extract)/처리(Transform)/보관 및 활용(Load)
 
@@ -20,7 +17,7 @@ AIRFOW
 
 #### 소스 데이터
 [https://www.kobis.or.kr/kobisopenapi/homepg/main/main.do]
-***
+
 #### 테스트 환경
 ```
 $ uname -a
