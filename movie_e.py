@@ -25,7 +25,7 @@ with DAG(
         max_active_runs=1,
         max_active_tasks=3,
         description='movie',
-        schedule="0 0 1 * *",
+        schedule="0 0 * * *",
         start_date=datetime(2024, 7, 24),
         catchup=True,
         tags=['api', 'movie', 'amt'],
@@ -37,19 +37,37 @@ with DAG(
         bash_command="echo 'start'"
     )
 
-    one_to_four = BashOperator(
+    def get_one_echo():
+        from extract.api.one_to_four import ice_b
+        print(ice_b())
+
+    def get_five_echo():
+        from extract.api.five_to_eight import ice_breaking
+        print(ice_breaking())
+
+    def get_eight_echo():
+        from extract.api.nine_to_twelve import ice_breaking
+        print(ice_breaking())
+
+    one_to_four = PythonVirtualenvOperator(
         task_id="one_to_four",
-        bash_command='echo "oneTofour"'
+        python_callable=get_one_echo,
+        requirements=["git+https://github.com/DE32-Team-Two/Extract.git@d1.0.0/20240802hotfix"],
+        system_site_packages=False,
     )
     
-    five_to_eight = BashOperator(
+    five_to_eight = PythonVirtualenvOperator(
         task_id="five_to_eight",
-        bash_command='echo "oneTofour"'
+        python_callable=get_five_echo,
+        requirements=["git+https://github.com/DE32-Team-Two/Extract.git@d1.0.0/20240802hotfix"],
+        system_site_packages=False,
     )
 
-    nine_to_twelve = BashOperator(
+    nine_to_twelve = PythonVirtualenvOperator(
         task_id="nine_to_twelve",
-        bash_command='echo "oneTofour"'
+        python_callable=get_eight_echo,
+        requirements=["git+https://github.com/DE32-Team-Two/Extract.git@d1.0.0/20240802hotfix"],
+        system_site_packages=False,
     )
 
 
