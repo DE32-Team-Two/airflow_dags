@@ -47,19 +47,19 @@ pandas
 ### 진행상황 
 
 #### DAY 1 
-- [ ] 작성 package 분배 (4개월 단위로 2022년 자료 수집)
-- [ ] 분배 package  개발 진행
-- [ ] pytest 통과
-- [ ] airflow 가동
-- [ ] 팀프로젝트 READ.ME 작성
-- [ ] Icd_breaking 함수 생성 후 호출
-- [ ] 1차 배포
+- [x] 작성 package 분배 (4개월 단위로 2022년 자료 수집)
+- [x] 분배 package  개발 진행
+- [x] pytest 통과
+- [x] airflow 가동
+- [x] 팀프로젝트 READ.ME 작성
+- [x] Icd_breaking 함수 생성 후 호출
+- [x] 1차 배포
 
 #### DAY 2
-- [ ] 데이터 변환을 위한 함수 생성
-- [ ] pytest통과
-- [ ] airflow 가동
-- [ ] 팀프로젝트 READ.ME 작성
+- [x] 데이터 변환을 위한 함수 생성
+- [x] pytest통과
+- [x] airflow 가동
+- [x] 팀프로젝트 READ.ME 작성
 - [ ] 2차 배포
 
 #### DAY 3
