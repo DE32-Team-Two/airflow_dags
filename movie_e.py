@@ -45,13 +45,19 @@ with DAG(
         else:
             sys.exit(1)
 
-    def get_five_echo():
-        from extract.api.five_to_eight import ice_breaking
-        print(ice_breaking())
+    def get_five_echo(ds_nodash):
+        from extract.api.five_to_eight import ice_breaking, save2df
+        if 4 < int(ds_nodash[4:6]) < 9:
+            sav2df(ds_nodash)
+        else:
+            sys.exit(1)
 
-    def get_eight_echo():
-        from extract.api.nine_to_twelve import ice_breaking
-        print(ice_breaking())
+    def get_eight_echo(ds_nodash):
+        from extract.api.nine_to_twelve import ice_breaking, save2df
+        if 8 < int(ds_nodash[6:]):
+            sav2df(ds_nodash)
+        else:
+            sys.exit(1)
 
     one_to_four = PythonVirtualenvOperator(
         task_id="one_to_four",
@@ -64,21 +70,22 @@ with DAG(
     five_to_eight = PythonVirtualenvOperator(
         task_id="five_to_eight",
         python_callable=get_five_echo,
-        requirements=["git+https://github.com/DE32-Team-Two/Extract.git@d1.0.0/20240802hotfix"],
+        requirements=["git+https://github.com/DE32-Team-Two/Extract.git@d2.0.0/parquet"],
         system_site_packages=False,
     )
 
     nine_to_twelve = PythonVirtualenvOperator(
         task_id="nine_to_twelve",
         python_callable=get_eight_echo,
-        requirements=["git+https://github.com/DE32-Team-Two/Extract.git@d1.0.0/20240802hotfix"],
+        requirements=["git+https://github.com/DE32-Team-Two/Extract.git@d2.0.0/parquet"],
         system_site_packages=False,
     )
 
 
     end = BashOperator(
         task_id="end",
-        bash_command="echo 'end'"
+        bash_command="echo 'end'",
+		trigger_rule=one_success
     )
 
     start >> [one_to_four, five_to_eight, nine_to_twelve] >> end
