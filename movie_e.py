@@ -85,7 +85,7 @@ with DAG(
     end = BashOperator(
         task_id="end",
         bash_command="echo 'end'",
-		trigger_rule=one_success
+		trigger_rule='one_success'
     )
 
     start >> [one_to_four, five_to_eight, nine_to_twelve] >> end
