@@ -1,7 +1,6 @@
 import sys
 from datetime import datetime, timedelta
 from textwrap import dedent
-from pprint import pprint
 
 from airflow import DAG
 
@@ -41,8 +40,12 @@ with DAG(
     def get_tabulate(ds_nodash):
         from load.api.util import tabulate_df
 
-        if ds_nodash[4:6] != '01':
-            print(tabulate_df(ds_nodash))
+        before, after = tabulate_df(ds_nodash)
+        print("*"*20)
+        print(before)
+        print("*"*20)
+        print(after)
+        print("*"*20)
         
 
     tabulate_L = PythonVirtualenvOperator(
@@ -59,4 +62,4 @@ with DAG(
 		trigger_rule='one_success'
     )
 
-    start >> merge_T >> end
+    start >> tabulate_L >> end
