@@ -17,6 +17,7 @@
 
 #### 소스 데이터
 [https://www.kobis.or.kr/kobisopenapi/homepg/main/main.do]
+*******
 
 #### 테스트 환경
 ```
@@ -62,6 +63,17 @@ export AIRFLOW__CORE__LOAD_EXAMPLES=False
 # 새로운 admin 암호확인
 $ cat ~/airflow_team/standalone_admin_password.txt
 ```
+*****
+#### Extract
+2022년 영화 데이터 월 단위로 추출
+parquet 파일로 저장
 
+#### Transform
+parquet 파일을 DataFrame으로 저장
+중복 데이터 값 merge
+movieCnt(일별 관객수)를 월 단위로 합계하여 매월 인기 영화 집계
+
+#### Load
+tabulate 모듈을 활용하여 산출된 DataFrame을 예쁘게🌸 출력
 
 
