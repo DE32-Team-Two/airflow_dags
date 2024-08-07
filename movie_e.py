@@ -54,7 +54,7 @@ with DAG(
 
     def get_eight_echo(ds_nodash):
         from extract.api.nine_to_twelve import ice_breaking, save2df
-        if 8 < int(ds_nodash[6:]):
+        if 8 < int(ds_nodash[4:6]):
             save2df(ds_nodash)
         else:
             sys.exit(1)
