@@ -38,7 +38,7 @@ with DAG(
         bash_command="echo 'start'"
     )
 
-    def get_one_echo(ds_nodash):
+    def merge(ds_nodash):
         import sys
         from transform.api.util import merge
 
@@ -47,8 +47,8 @@ with DAG(
         
 
     merge_T = PythonVirtualenvOperator(
-        task_id="one_to_four",
-        python_callable=get_one_echo,
+        task_id="merge_T",
+        python_callable=merge,
         requirements=["git+https://github.com/DE32-Team-Two/Transform.git@d3.0.0/merge"],
         system_site_packages=False,
         
